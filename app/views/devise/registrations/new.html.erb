@@ -1,9 +1,12 @@
+<div class="container">
+  <div class="row">
+
 <h2>新規会員登録</h2>
 
 <%= form_with model: @customer, url: customer_registration_path do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-  
-  <table class="table">
+    <div class="col">
+  <table>
     <tr>
       <td>名前</td>
       <td><%= f.label :"(姓)" %><%= f.text_field :last_name %></td>
@@ -38,9 +41,12 @@
     </tr>
   </table>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+    <div class="actions">
+      <%= f.submit "新規登録", class: "btn btn-success" %>
+    </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>
