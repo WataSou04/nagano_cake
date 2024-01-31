@@ -1,5 +1,8 @@
 <h5>会員情報編集</h5>
 
+<%= form_with model: @customer, url: customers_information_edit_path do |f| %>
 <table>
-  <tr><td><label for="Name">名前</label></td><td><%= f.text_field :last_name, autofocus: true, id:"Name" %></td></tr>
+  <tr><td><label for="Name">氏名</label></td><td><%= f.text_field :last_name, autofocus: true, id:"Name" %></td></tr>
 </table>
+<%= f.submit '保存' %>
+<% end %>
