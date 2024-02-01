@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     get 'customers/information/edit' => 'customers#edit'
     patch 'customers/information' => 'customers#update'
     get 'customers/check' => 'customers#check'
+    patch 'customers/withdrawal' => 'customers#withdrawal'
     resources :items, only: [:index, :show]
     resources :orders, only: [:new, :index, :show]
   end

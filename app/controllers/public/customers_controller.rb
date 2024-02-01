@@ -17,6 +17,13 @@ class Public::CustomersController < ApplicationController
     @customer = current_customer
   end
   
+  def withdrawal
+    @customer = current_customer
+    @customer.update(is_active: false)
+    reset_session
+    redirect_to about_path
+  end
+  
   private
   
   def customer_params
