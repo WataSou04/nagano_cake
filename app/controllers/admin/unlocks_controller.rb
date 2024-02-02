@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::UnlocksController < Devise::UnlocksController
+  bofore_action :authenticate_admin!
   # GET /resource/unlock/new
   # def new
   #   super
