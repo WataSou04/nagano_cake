@@ -8,10 +8,12 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.save
-    redirect_to admin_item_path
+    redirect_to admin_items_path
   end
   
   def index
+    @items = Item.all
+    @genres = Genre.all
   end
 
   def show
@@ -23,6 +25,6 @@ class Admin::ItemsController < ApplicationController
   private
   
   def item_params
-    params.require(:item).permit(:image, :name, :introduction, :price, :is_sale)
+    params.require(:item).permit(:image, :name, :introduction, :price, :is_sale, :genre)
   end
 end
