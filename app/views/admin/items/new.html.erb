@@ -7,7 +7,7 @@
     <tr><td>商品説明</td><td><%= f.text_area :introduction %></td></tr>
     <tr><td>ジャンル</td><td><%= f.collection_select :genre_id, @genres, :id, :name %></td></tr>
     <tr><td>税抜価格</td><td><%= f.text_field :price %>円</td></tr>
-    <tr><td>販売ステータス</td><td><label for="sale">販売中</label><%= f.radio_button :is_sale, :true, id:"sale" %><label for="sales_stop">販売停止中</label><%= f.radio_button :is_sale, :false, id:"sales_stop" %></td></tr>
+    <tr><td>販売ステータス</td><td><%= f.radio_button :is_sale, :true, id:"sale" %><label for="sale">販売中</label><%= f.radio_button :is_sale, :false, id:"sales_stop" %><label for="sales_stop">販売停止中</label></td></tr>
   </table>
   <%= f.submit "新規登録", class: 'btn btn-success' %>
   <% end %>
