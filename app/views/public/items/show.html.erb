@@ -1,2 +1,22 @@
-<h1>Items#show</h1>
-<p>Find me in app/views/items/show.html.erb</p>
+<div class="row pt-5">
+  <div class="col-lg-2" style="background-color: orange">
+    <div>
+      <table class="table">
+        <tr><th>ジャンル検索</th></tr>
+        <%= form_with url: items_path, method: :get do |f| %>
+          <% @genres.each do |genre| %>
+          <tr><td><%= link_to genre.name, items_path(genre_id: genre.id), method: :get %></td></tr>
+          <% end %>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <div class="col-lg-3 offset-lg-1">
+    <%= image_tag @item.image, size: "300x200" %>
+  </div>
+  <div class="col-lg-5 offset-lg-1">
+    <h5><strong><%= @item.name %></strong></h5>
+    <p><%= @item.introduction %></p>
+    <h5>¥<%= @item.price %></h5>
+  </div>
+</div>

@@ -3,15 +3,18 @@
     <p>Top</p>
   </div>
   <div class="col-lg-9 offset-lg-1">
-    <h4><strong>商品一覧</strong></h4>
+    <h3><strong>商品一覧</strong></h3>
     <div class="d-flex flex-wrap">
       <% @items.each do |item| %>
-      <div class="pl-2">
-        <%= image_tag item.image, size: "200x120" %>
+      <div class="pl-1">
+        <%= link_to item_path(item.id) do %>
+          <%= image_tag item.image, size: "200x120" %>
+        <% end %>
         <p><strong><%= item.name %></strong></p>
         <p><strong><%= item.price %></strong></p>
       </div>
       <% end %>
     </div>
+    <%= paginate @items %>
   </div>
 </div>
