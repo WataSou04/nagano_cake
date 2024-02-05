@@ -1,15 +1,7 @@
 <div class="row pt-5">
-  <div class="col-lg-2" style="background-color: orange">
-    <div>
-      <table class="table">
-        <tr><th>ジャンル検索</th></tr>
-        <%= form_with url: items_path, method: :get do |f| %>
-          <% @genres.each do |genre| %>
-          <tr><td><%= link_to genre.name, items_path(genre_id: genre.id), method: :get %></td></tr>
-          <% end %>
-        <% end %>
-      </table>
-    </div>
+  <%= render 'list', genres: @genres %>
+  <div class="col-lg-2">
+    <%= render 'list', genres: @genres %>
   </div>
   <div class="col-lg-3 offset-lg-1">
     <%= image_tag @item.image, size: "300x200" %>
