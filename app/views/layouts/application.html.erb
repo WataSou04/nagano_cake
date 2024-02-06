@@ -25,10 +25,7 @@
           <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'btn btn-outline-secondary' %>
         </li>
       </ul>
-      <%= form_with url: items_path, method: :get do |f| %>
-        <%= f.text_field :search %>
-        <%= f.submit 'Search', name: nil %>
-      <% end %>
+      <
       <% elsif admin_signed_in? %>
       <ul class="nav justify-content-end">
         <li class="nav-item">
@@ -41,10 +38,7 @@
           <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'btn btn-outline-secondary' %>
         </li>
       </ul>
-      <%= form_with url:items_path, method: :get do |f| %>
-        <%= form.text_field :search %>
-        <%= form.submit 'Search', name: nil %>
-      <% end %>
+      
       <% else %>
       <ul class="nav justify-content-end">
         <li class="nav-item">
