@@ -1,0 +1,9 @@
+<h5>配送先登録/一覧</h5>
+
+<table>
+  <%= form_with model: @shipping_address, url: shipping_addresses_path, method: :post do |f| %>
+  <tr><td>郵便番号(ハイフンなし)</td><td><%= f.text_field :postal_code %></td></tr>
+  <tr><td>住所</td><td><%= f.text_field :address %></td></tr>
+  <tr><td>宛名</td><td><%= f.text_field :name %></td><td><%= f.submit '新規登録', class: 'btn btn-success' %></td></tr>
+  <% end %>
+</table>

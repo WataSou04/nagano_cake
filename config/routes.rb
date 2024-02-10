@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     patch 'customers/withdrawal' => 'customers#withdrawal'
     resources :items, only: [:index, :show]
     resources :orders, only: [:new, :index, :show]
+    resources :shipping_addresses, only: [:index, :create, :edit, :update, :destroy]
+    resources :cart_items, only: [:index, :update, :create, :destroy]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
