@@ -7,3 +7,10 @@
   <tr><td>宛名</td><td><%= f.text_field :name %></td><td><%= f.submit '新規登録', class: 'btn btn-success' %></td></tr>
   <% end %>
 </table>
+
+<table class="table">
+  <tr><td>郵便番号</td><td>住所</td><td>宛名</td></tr>
+  <% @shippingaddresses.each do |shippingaddress| %>
+  <tr><td><%= shippingaddress.postal_code %></td><td><%= shippingaddress.address %></td><td><%= link_to '編集する', edit_shipping_address_path(shippingaddresses.id), class: 'btn btn-success' %></td></tr>
+  <% end %>
+</table>

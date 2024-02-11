@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 2024_01_29_131535) do
     t.integer "customer_id", null: false
     t.string "name", default: "", null: false
     t.string "postal_code", default: "", null: false
-    t.string "address", default: "1", null: false
+    t.string "address", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

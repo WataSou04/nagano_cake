@@ -5,6 +5,6 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   has_many :shipping_address, dependent: :destroy
-  has_many :cart_item
+  has_many :cart_item, dependent: :destroy
   has_many :order
 end
