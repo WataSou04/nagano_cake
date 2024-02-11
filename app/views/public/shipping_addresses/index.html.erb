@@ -1,16 +1,17 @@
 <h5>配送先登録/一覧</h5>
 
 <table>
-  <%= form_with model: @shipping_address, url: shipping_addresses_path, method: :post do |f| %>
-  <tr><td>郵便番号(ハイフンなし)</td><td><%= f.text_field :postal_code %></td></tr>
-  <tr><td>住所</td><td><%= f.text_field :address %></td></tr>
-  <tr><td>宛名</td><td><%= f.text_field :name %></td><td><%= f.submit '新規登録', class: 'btn btn-success' %></td></tr>
+  <%= form_with model: @shippingaddress, url: shipping_addresses_path, method: :post do |f| %>
+    <%= f.hidden_field :customer_id, value: current_customer.id %>
+    <tr><td>郵便番号(ハイフンなし)</td><td><%= f.text_field :postal_code %></td></tr>
+    <tr><td>住所</td><td><%= f.text_field :address %></td></tr>
+    <tr><td>宛名</td><td><%= f.text_field :name %></td><td><%= f.submit '新規登録', class: 'btn btn-success' %></td></tr>
   <% end %>
 </table>
 
 <table class="table">
   <tr><td>郵便番号</td><td>住所</td><td>宛名</td></tr>
   <% @shippingaddresses.each do |shippingaddress| %>
-  <tr><td><%= shippingaddress.postal_code %></td><td><%= shippingaddress.address %></td><td><%= link_to '編集する', edit_shipping_address_path(shippingaddresses.id), class: 'btn btn-success' %></td></tr>
+  <tr><td><%= shippingaddress.postal_code %></td><td><%= shippingaddress.address %></td><td><%= shippingaddress.name %></td><td><%= link_to '編集する', edit_shipping_address_path(shippingaddress.id), class: 'btn btn-success' %></td></tr>
   <% end %>
 </table>
