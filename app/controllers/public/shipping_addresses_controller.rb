@@ -15,6 +15,16 @@ class Public::ShippingAddressesController < ApplicationController
     end
   end
   
+  def edit
+    @shippingaddress = ShippingAddress.find(params[:id])
+  end
+  
+  def update
+    @shippingaddress = ShippingAddress.find(params[:id])
+    @shippingaddress.update(shippingaddress_params)
+    redirect_to shipping_addresses_path
+  end
+  
   private
   
   def shippingaddress_params
