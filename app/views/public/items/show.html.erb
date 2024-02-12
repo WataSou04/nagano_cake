@@ -10,5 +10,12 @@
     <h5><strong><%= @item.name %></strong></h5>
     <p><%= @item.introduction %></p>
     <h5>¥<%= @item.price %></h5>
+    
+    <%= form_with model: @cartitem do |f| %>
+      <%= f.hidden_field :item_id, value: @item.id %>
+      <%= f.hidden_field :customer_id, value: current_user.id %>
+      <%= f.select :amount, *[1..10] %>
+      <%= f.submit 'カートに入れる' %>
+    <% end %>
   </div>
 </div>

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  namespace :public do
+    get 'cart_items/index'
+  end
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: 'admin/sessions'
   }
