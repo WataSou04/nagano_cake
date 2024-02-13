@@ -10,6 +10,12 @@ class Public::CartItemsController < ApplicationController
     redirect_to cart_items_path
   end
   
+  def update
+    @cartitems = CartItem.all
+    @cartitems.update(cartitem_params)
+    redirect_to cart_items_path
+  end
+  
   def destroy
     @cartitem = CartItem.find(params[:id])
     @cartitem.destroy
@@ -17,7 +23,6 @@ class Public::CartItemsController < ApplicationController
   end
   
   def destroy_all
-    
     CartItem.destroy_all
     redirect_to cart_items_path
   end
