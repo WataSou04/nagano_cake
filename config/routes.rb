@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
   
-  namespace :public do
-    get 'cart_items/index'
-  end
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: 'admin/sessions'
   }
@@ -30,6 +27,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:new, :index, :show]
     resources :shipping_addresses, only: [:index, :create, :edit, :update, :destroy]
     resources :cart_items, only: [:index, :update, :create, :destroy]
+    delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all_cart_items'
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
