@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     get 'customers/check' => 'customers#check'
     patch 'customers/withdrawal' => 'customers#withdrawal'
     resources :items, only: [:index, :show]
-    resources :orders, only: [:new, :index, :show]
+    resources :orders, only: [:new, :create, :index, :show]
     resources :shipping_addresses, only: [:index, :create, :edit, :update, :destroy]
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all_cart_items'
     resources :cart_items, only: [:index, :update, :create, :destroy]
