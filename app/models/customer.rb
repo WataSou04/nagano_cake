@@ -7,4 +7,9 @@ class Customer < ApplicationRecord
   has_many :shipping_addresses, dependent: :destroy
   has_many :cart_items, dependent: :destroy
   has_many :orders
+  
+  def address_display
+    '〒' + postal_code + ' '  + address
+    last_name + first_name
+  end
 end
