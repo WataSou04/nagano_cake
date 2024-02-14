@@ -6,8 +6,14 @@ class Public::CartItemsController < ApplicationController
   
   def create
     @cartitem = CartItem.new(cartitem_params)
-    @cartitem.save
-    redirect_to cart_items_path
+    if CartItem.find_by(item_id: params[:cart_item][:item_id])
+      @cartitem.amount += params[:cart_item][:amount].to_i
+      @cartitem.update(amount: cart_item.amount)
+      redirect_to cart_items_path
+    else
+      @cartitem.save
+      redirect_to cart_items_path
+    end
   end
   
   def update
