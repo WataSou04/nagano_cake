@@ -12,10 +12,10 @@ class Public::OrdersController < ApplicationController
     
     ary = []
     @cart_items.each do |cart_item|
-      ary << cart_item.item_id.price*cart_item.amount
+      ary << cart_item.item.price * cart_item.amount
     end
     @cart_items_price = ary.sum
-    @total_price = @postage + @cart_item_price
+    @total_price = @postage + @cart_items_price
     
     @address_type = params[:order][:address]
     case @address_type
@@ -29,8 +29,8 @@ class Public::OrdersController < ApplicationController
         render :new
       end
     when "new_address"
-      unless params[:order][:new_potal_code] == "" && params[:order][:new_address] == "" && params[:order][:new_name] == ""
-        @selected_address = params[:order][:new_potal_code] + " " + params[:order][:new_address] + " " + params[:order][:new_name]
+      unless params[:order][:potal_code] == "" && params[:order][:address] == "" && params[:order][:name] == ""
+        @selected_address = params[:order][:potal_code] + " " + params[:order][:address] + " " + params[:order][:name]
       else
         render :new
       end
