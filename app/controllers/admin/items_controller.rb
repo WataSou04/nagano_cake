@@ -18,7 +18,7 @@ class Admin::ItemsController < ApplicationController
   
   def index
     @items = Item.all
-    @items = @items.where('name LIKE ?', "%#{params[:search]}%") if params[:search].present?
+    
     @genres = Genre.all
   end
 

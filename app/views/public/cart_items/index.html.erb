@@ -12,7 +12,8 @@
     <% end %>
     <td><%= cart_item.subtotal %></td>
     <td><%= link_to '削除する', cart_item_path(cart_item), method: :delete, class: 'btn btn-danger' %></td>
-    <% @total_amount += cart_item.subtotal %></tr>
+    <% @total_amount += cart_item.subtotal %>
+  </tr>
   <% end %>
 </table>
 <p>合計金額<%= @total_amount %></p>
