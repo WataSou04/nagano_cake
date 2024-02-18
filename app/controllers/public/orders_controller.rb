@@ -57,7 +57,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @order = Order.new(order_params)
+    @orders = Order.all
     @cart_items = OrderDetail.new(params[:item_id][:name])
   end
 
