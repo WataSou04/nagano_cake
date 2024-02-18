@@ -17,5 +17,6 @@
 <p><strong>お届け先</strong></p><p><%= @selected_address %></p>
 
 <%= form_with model: @order, url: orders_path, method: :post do |f| %>
-<%= f.hidden_field :payment_method, value: payment_method %>
-<%= 
+<%= f.hidden_field :customer_id, value: current_customer.id %>
+<%= f.hidden_field :payment_method, value: @order.payment_method %>
+<% end %>

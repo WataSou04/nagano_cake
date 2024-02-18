@@ -17,24 +17,20 @@ class Public::OrdersController < ApplicationController
     @cart_items_price = ary.sum
     @total_price = @postage + @cart_items_price
     
-    @address_type = params[:order][:address_type]
-    case @address_type
-    when "member_address"
-      @selected_address = current_customer.postal_code + " " + current_customer.address + " " + current_customer.last_name + current_customer.first_name
-    when "registered_address"
-      unless params[:order][:registered_address] == ""
-        selected = ShippingAddress.find(params[:order][:registered_address_id])
-        @selected_address = selected.postal_code + " " + selected.address + " " + selected.name
-      else
-        render :new
-      end
-    when "new_address"
-      unless params[:order][:postal_code] == "" && params[:order][:address] == "" && params[:order][:name] == ""
-        @selected_address = params[:order][:postal_code] + " " + params[:order][:address] + " " + params[:order][:name]
-      else
-        render :new
-      end
+    if params[:order][:address_type] == "0"
+      @order.name = current_customer.last_name + current_customer.first_name
+      @order.postal_code = current_customer.postal_code
+      @order.address = current_customer.address
+    elsif params[:order][:address_type] == "1"
+      @address = ShippingAddress.find(params[:order][:address_id])
+      @order.name = @address.name
+      @order.postal_code = @address.postal_code
+      @order.address = @address.address
+    elsif params[:order][:address_type] == "2"
+      @order.customer_id = current_customer.id
     end
+    @cart_itmes = current_customer.cart_items
+    
   end
 
   def index
