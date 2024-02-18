@@ -28,8 +28,8 @@ Rails.application.routes.draw do
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all_cart_items'
     resources :cart_items, only: [:index, :update, :create, :destroy]
     post 'orders/check' => 'orders#check'
-    resources :orders, only: [:new, :create, :index, :show]
     get 'orders/completion' => 'orders#completion'
+    resources :orders, only: [:new, :create, :index, :show]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

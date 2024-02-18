@@ -29,14 +29,15 @@ class Public::OrdersController < ApplicationController
     elsif params[:order][:address_type] == "2"
       @order.customer_id = current_customer.id
     end
+    @order.billing_amount = @total_price
     @cart_itmes = current_customer.cart_items
     @order_new = Order.new
     render :check
   end
   
   def create
-    @order = Order.new(order_params)
-    @order.save
+    order = Order.new(order_params)
+    order.save
     @cart_items = current_customer.cart_items.all
     
     @cart_items.each do |cart_item|
@@ -50,10 +51,14 @@ class Public::OrdersController < ApplicationController
     
     CartItem.destroy_all
     redirect_to orders_completion_path
-    
+  end
+  
+  def completion
   end
 
   def index
+    @order = Order.new(order_params)
+    @cart_items = OrderDetail.new(params[:item_id][:name])
   end
 
   def show
@@ -62,6 +67,6 @@ class Public::OrdersController < ApplicationController
   private
   
   def order_params
-    params.require(:order).permit(:payment_method, :postal_code, :address, :name, :postage, :billing_amount, :status, :customer_id)
+    params.require(:order).permit(:payment_method, :postal_code, :address, :name, :postage, :billing_amount, :status, :customer_id, :created_at)
   end
 end
