@@ -12,6 +12,10 @@
     <tr><td>請求金額</td><td><%= @total_price %></td></tr>
 </table>
 
-<p><strong>支払方法</strong></p><p><%= @payment_method %></p>
+<p><strong>支払方法</strong></p><p><%= @order.payment_method_i18n %></p>
 
 <p><strong>お届け先</strong></p><p><%= @selected_address %></p>
+
+<%= form_with model: @order, url: orders_path, method: :post do |f| %>
+<%= f.hidden_field :payment_method, value: payment_method %>
+<%= 

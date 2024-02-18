@@ -6,9 +6,9 @@ class Public::OrdersController < ApplicationController
   end
   
   def check
+    @order = Order.new(order_params)
     @cart_items = CartItem.where(customer_id: current_customer.id)
     @postage = 800
-    @payment_method = params[:order][:payment_method]
     
     ary = []
     @cart_items.each do |cart_item|
@@ -17,7 +17,7 @@ class Public::OrdersController < ApplicationController
     @cart_items_price = ary.sum
     @total_price = @postage + @cart_items_price
     
-    @address_type = params[:order][:address]
+    @address_type = params[:order][:address_type]
     case @address_type
     when "member_address"
       @selected_address = current_customer.postal_code + " " + current_customer.address + " " + current_customer.last_name + current_customer.first_name
