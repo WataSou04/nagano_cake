@@ -11,6 +11,16 @@
 </div>
 <div>
   <table>
-    <tr><td>商品合計</td><td><%= @order.subtotal %></td></tr>
+    <tr><td>商品合計</td><td><%= @order.billing_amount - @order.postage %></td></tr>
+    <tr><td>配送料</td><td><%= @order.postage %></td></tr>
+    <tr><td>ご請求額</td><td><%= @order.billing_amount %></td></tr>
+  </table>
+</div>
+<div>
+  <table>
+    <tr><td>商品</td><td>単価(税込)</td><td>個数</td><td>小計</td></tr>
+    <% @order_detail.each do |order_detail| %>
+    <tr><td><%= order_detail.item.name %></td><td><%= order_detail.price %></td><td><%= order_detail.amount %></td><td><%= order_detail.price * order_detail.amount %></td></tr>
+    <% end %>
   </table>
 </div>
