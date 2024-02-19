@@ -58,10 +58,10 @@ class Public::OrdersController < ApplicationController
 
   def index
     @orders = Order.all
-    @cart_items = OrderDetail.new(params[:item_id][:name])
   end
 
   def show
+    @order = Order.find(params[:id])
   end
   
   private
