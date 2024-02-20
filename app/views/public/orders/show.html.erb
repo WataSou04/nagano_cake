@@ -20,7 +20,7 @@
   <table>
     <tr><td>商品</td><td>単価(税込)</td><td>個数</td><td>小計</td></tr>
     <% @order_detail.each do |order_detail| %>
-    <tr><td><%= order_detail.item.name %></td><td><%= order_detail.price %></td><td><%= order_detail.amount %></td><td><%= order_detail.price * order_detail.amount %></td></tr>
+    <tr><td><%= order_detail.item.name %></td><td><%= order_detail.with_tax_price %></td><td><%= order_detail.amount %></td><td><%= order_detail.subtotal %></td></tr>
     <% end %>
   </table>
 </div>
