@@ -11,7 +11,11 @@ class Admin::OrdersController < ApplicationController
   
   def update
     @order = Order.find(params[:id])
-    @order.update(status: params[:order][:status])
+    @order.update(order_params)
     redirect_to admin_order_path
+  end
+  
+  def order_params
+    params.require(:order).permit(:customer_id, :name, :postal_code, :address, :postage, :billing_amount, :payment_method, :status)
   end
 end

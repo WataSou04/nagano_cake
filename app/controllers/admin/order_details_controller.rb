@@ -2,8 +2,14 @@ class Admin::OrderDetailsController < ApplicationController
   
   def update
     @order = Order.find(params[:id])
-    @order_details = OrderDetail.where(order_id: @order.id)
-    @order_details.update
-    redirect_to show
+    @order_details = OrderDetail.find_by(item_id: params)
+    @order_details.update(orderdetail_params)
+    redirect_to admin_order_path
+  end
+  
+  private
+  
+  def orderdetail_params
+    params.require(:order_detail).permit(:item_id, :order_id, :price, :amount, :production_status)
   end
 end
