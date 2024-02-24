@@ -18,7 +18,7 @@ class Public::CartItemsController < ApplicationController
   end
   
   def update
-    @cart_items = CartItem.all
+    @cart_items = CartItem.find(params[:id])
     @cart_items.update(cartitem_params)
     redirect_to cart_items_path
   end
