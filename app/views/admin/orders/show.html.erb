@@ -1,7 +1,7 @@
 <h5>注文履歴詳細</h5>
 <div>
   <table>
-    <tr><th>購入者</th><td><%= @order.name %></td></tr>
+    <tr><th>購入者</th><td><%= link_to admin_customer_path(@order.customer.id) do %><%= @order.name %><% end %></td></tr>
     <tr><th>注文日</th><td><%= l @order.created_at %></td></tr>
     <tr><th>配送先</th><td>〒<%= @order.postal_code %> <%= @order.address %><br><%= @order.name %></td></tr>
     <tr><th>支払方法</th><td><%= @order.payment_method_i18n %></td></tr>
@@ -28,5 +28,9 @@
           <% end %></td>
     </tr>
     <% end %>
+  </table>
+  
+  <table>
+    <tr><th>商品合計</th><td><%= @order.billing_amount %></td></tr>
   </table>
 </div>
