@@ -1,38 +1,43 @@
-<h5>注文履歴詳細</h5>
-<div>
-  <table>
-    <tr><th>購入者</th><td><%= link_to admin_customer_path(@order.customer.id) do %><%= @order.name %><% end %></td></tr>
-    <tr><th>注文日</th><td><%= l @order.created_at %></td></tr>
-    <tr><th>配送先</th><td>〒<%= @order.postal_code %> <%= @order.address %><br><%= @order.name %></td></tr>
-    <tr><th>支払方法</th><td><%= @order.payment_method_i18n %></td></tr>
-    <tr><th>注文ステータス</th>
-        <td><%= form_with model: @order, url: admin_order_path, method: :patch do |f| %>
-              <%= f.select :status, {入金待ち: 'waiting_payment', 入金確認: 'payment_confirmation', 製作中: 'in_production', 発送準備中: 'in_preparation', 発送済み: 'sent'} %>
+<div class="container">
+  <h5>注文履歴詳細</h5>
+  <div class="row">
+    <table>
+      <tr><th>購入者</th><td><%= link_to admin_customer_path(@order.customer.id) do %><%= @order.name %><% end %></td></tr>
+      <tr><th>注文日</th><td><%= l @order.created_at %></td></tr>
+      <tr><th>配送先</th><td>〒<%= @order.postal_code %> <%= @order.address %><br><%= @order.name %></td></tr>
+      <tr><th>支払方法</th><td><%= @order.payment_method_i18n %></td></tr>
+      <tr><th>注文ステータス</th>
+          <td><%= form_with model: @order, url: admin_order_path, method: :patch do |f| %>
+                <%= f.select :status, {入金待ち: 'waiting_payment', 入金確認: 'payment_confirmation', 製作中: 'in_production', 発送準備中: 'in_preparation', 発送済み: 'sent'} %>
+                <%= f.submit '更新', class: 'btn btn-success' %>
+              <% end %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="row">
+    <div class="col-lg-8">
+    <table class="table">
+      <tr><th>商品名</th><th>単価(税込)</th><th>数量</th><th>小計</th><th>製作ステータス</th></tr>
+      <% @order_details.each do |order_detail| %>
+      <tr>
+        <td><%= order_detail.item.name %></td>
+        <td><%= order_detail.with_tax_price %></td>
+        <td><%= order_detail.amount %></td>
+        <td><%= order_detail.subtotal %></td>
+        <td><%= form_with model: order_detail, url: admin_order_detail_path(order_detail), method: :patch do |f| %>
+              <%= f.select :production_status, {着手不可: 'not_started', 製作待ち: 'waiting_production', 製作中: 'in_production', 製作完了: 'completed'} %>
               <%= f.submit '更新', class: 'btn btn-success' %>
             <% end %></td>
-    </tr>
-  </table>
-</div>
-<div>
-  <table class="table">
-    <tr><th>商品名</th><th>単価(税込)</th><th>数量</th><th>小計</th><th>製作ステータス</th></tr>
-    <% @order_details.each do |order_detail| %>
-    <tr>
-      <td><%= order_detail.item.name %></td>
-      <td><%= order_detail.with_tax_price %></td>
-      <td><%= order_detail.amount %></td>
-      <td><%= order_detail.subtotal %></td>
-      <td><%= form_with model: order_detail, url: admin_order_detail_path(order_detail), method: :patch do |f| %>
-            <%= f.select :production_status, {着手不可: 'not_started', 製作待ち: 'waiting_production', 製作中: 'in_production', 製作完了: 'completed'} %>
-            <%= f.submit '更新', class: 'btn btn-success' %>
-          <% end %></td>
-    </tr>
-    <% end %>
-  </table>
+      </tr>
+      <% end %>
+    </table>
+    </div>
   
-  <table>
-    <tr><th>商品合計</th><td><%= @order.billing_amount - 800 %>円</td></tr>
-    <tr><th>送料</th><td>800円</td></tr>
-    <tr><th>請求金額合計</th><td><%= @order.billing_amount %>円</td></tr>
-  </table>
-</div>
+    <div class="col-lg-3 offset-lg-1">
+    <table>
+      <tr><th>商品合計</th><td><%= @order.billing_amount - 800 %>円</td></tr>
+      <tr><th>送料</th><td>800円</td></tr>
+      <tr><th>請求金額合計</th><td><%= @order.billing_amount %>円</td></tr>
+    </table>
+    </div>
+  </div>
