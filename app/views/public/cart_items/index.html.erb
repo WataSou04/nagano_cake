@@ -18,4 +18,8 @@
 </table>
 <p>合計金額<%= @total_amount %></p>
 
+<%= link_to "買い物を続ける", root_path, class: 'btn btn-primary' %>
+
+<% if @total_amount > 0 %>
 <%= link_to "情報入力に進む", new_order_path, class: 'btn btn-success' %>
+<% end %>

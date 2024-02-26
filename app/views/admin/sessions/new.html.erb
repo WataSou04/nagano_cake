@@ -10,14 +10,14 @@
         <div class="field">
           <tr>
             <td><%= f.label :メールアドレス %></td>
-            <td><%= f.email_field :メールアドレス, autofocus: true, autocomplete: "email" %></td>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
           </tr>
         </div>
 
         <div class="field">
           <tr>
             <td><%= f.label :パスワード %></td>
-            <td><%= f.password_field :パスワード, autocomplete: "current-password" %></td>
+            <td><%= f.password_field :password, autocomplete: "current-password" %></td>
           </tr>
         </div>
       </table>
@@ -27,6 +27,6 @@
     <div class="actions">
       <%= f.submit "ログイン", class: 'btn btn-primary' %>
     </div>
-  <% end %>
+      <% end %>
 
   <%= render "admin/shared/links" %>

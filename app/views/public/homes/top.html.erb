@@ -11,5 +11,15 @@
   <div class="col-lg-2"></div>
   <div class="col-lg-9 offset-lg-1">
     <h5>新着商品</h5>
+    <div class="row">
+    <% @items.first(4).each do |item| %>
+    <div>
+    <%= image_tag item.image, size: "200x100" %>
+    <p><%= item.name %></p>
+    <p><%= item.price %></p>
+    </div>
+    <% end %>
+    <%= link_to "全ての商品を見る>", items_path %>
+    </div>
   </div>
 </div>
